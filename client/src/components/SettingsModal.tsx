@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { uploadAvatar } from '../utils/supabaseStorage';
+import closeIcon from '../assets/images/icon-close.svg';
+import avatarPlaceholder from '../assets/images/avatar-placeholder.svg';
 
 type SettingsModalProps = {
   onClose: () => void;
@@ -86,7 +88,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             className="absolute top-6 right-6 cursor-pointer"
           >
             <img
-              src="/src/assets/images/icon-close.svg"
+              src={closeIcon}
               alt="close"
               className="w-[15px] h-[15px] object-contain"
               width="15"
@@ -104,7 +106,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 rounded-full bg-gray-300 overflow-hidden">
                 <img
-                  src={profile?.avatar_url || "/src/assets/images/avatar-placeholder.svg"}
+                  src={profile?.avatar_url || avatarPlaceholder}
                   alt="Avatar"
                   className="w-full h-full object-cover"
                   width="80"

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import logo from '../assets/images/logo.svg';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -54,7 +55,7 @@ const AuthPage = () => {
       <div className="bg-white rounded-2xl border border-mood-blue-100 p-8 w-full max-w-md shadow-lg">
         <div className="text-center mb-8">
           <img
-            src="/src/assets/images/logo.svg"
+            src={logo}
             alt="Mood Tracker logo"
             className="mx-auto mb-6"
             width="178"
