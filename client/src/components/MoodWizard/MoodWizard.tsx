@@ -6,6 +6,8 @@ import Step4_Sleep from "./Step4_Sleep";
 import type { MoodEntry } from "../../types";
 import { saveMoodEntryToSupabase } from "../../utils/supabaseStorage";
 import { getLocalDateString } from "../../utils/date";
+import closeIcon from "../../assets/images/icon-close.svg"
+import hintIcon from "../../assets/images/icon-hint.svg"
 
 type MoodLevel = -2 | -1 | 0 | 1 | 2;
 
@@ -127,7 +129,7 @@ const MoodWizard = ({
             onClick={handleClose}
             className="absolute top-8 right-8 cursor-pointer">
             <img
-              src="/src/assets/images/icon-close.svg"
+              src={closeIcon}
               alt="close"
               className="w-[15px] h-[15px] object-contain"
               width="15"
@@ -162,7 +164,7 @@ const MoodWizard = ({
               {showError && !formData.mood && (
                 <div ref={errorRef} className="flex items-start gap-2 text-mood-red-700 text-[15px]/[1.4] mt-2">
                   <img
-                    src="/src/assets/images/icon-hint.svg"
+                    src={hintIcon}
                     alt="error"
                     className="w-4 h-4 mt-0.5 inline-flex object-contain"
                     width="16"
@@ -185,7 +187,7 @@ const MoodWizard = ({
               {showError && formData.feelings.length < 1 && (
                 <div ref={errorRef} className="flex items-start gap-2 text-mood-red-700 text-[15px]/[1.4] mt-2">
                   <img
-                    src="/src/assets/images/icon-hint.svg"
+                    src={hintIcon}
                     alt="error"
                     className="w-4 h-4 mt-0.5 inline-flex object-contain"
                     width="16"
@@ -205,9 +207,9 @@ const MoodWizard = ({
                 onChange={(value) => setFormData({ ...formData, reflection: value })}
               /> 
               {showError && !formData.reflection && (
-                <div ref={errorRef} className="flex items-start gap-2 text-mood-red-700 text-[15px]/[1.4] mt-2">
+                <div ref={errorRef} className="flex items-start gap-2 text-[15px]/[1.4] mt-2">
                   <img
-                    src="/src/assets/images/icon-hint.svg"
+                    src={hintIcon}
                     alt="error"
                     className="w-4 h-4 mt-0.5 inline-flex object-contain"
                     width="16"
@@ -232,7 +234,7 @@ const MoodWizard = ({
               {showError && !formData.sleepRange && (
                 <div ref={errorRef} className="flex items-start gap-2 text-mood-red-700 text-[15px]/[1.4] mt-2">
                   <img
-                    src="/src/assets/images/icon-hint.svg"
+                    src={hintIcon}
                     alt="error"
                     className="w-4 h-4 mt-0.5 inline-flex object-contain"
                     width="16"

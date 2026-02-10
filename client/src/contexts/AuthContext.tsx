@@ -11,6 +11,7 @@ type AuthContextType = {
   signUp: (email: string, password: string, name: string) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signInWithGoogle: () => Promise<{ error: any }>;
+  signInWithGitHub: () => Promise<{ error: any }>;
   signOut: () => Promise<void>;
   updateProfile: (updates: { name?: string; avatar_url?: string }) => Promise<{ error: any }>;
 };
@@ -83,19 +84,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       } else if (!error && data) {
         // Profile exists, but check if we need to update it with OAuth data
         const { data: { user } } = await supabase.auth.getUser();
-        if (user && user.app_metadata.provider === 'google') {
-          // If profile lacks avatar but Google has one, update it
-          if (!data.avatar_url && user.user_metadata.picture) {
+        if (user && (user.app_metadata.provider === 'google' || user.app_metadata.provider === 'github')) {
+          // If profile lacks avatar but OAuth provider has one, update it
+          const oauthAvatar = user.user_metadata.picture || user.user_metadata.avatar_url;
+          if (!data.avatar_url && oauthAvatar) {
             const { error: updateError } = await supabase
               .from('profiles')
               .update({
-                avatar_url: user.user_metadata.picture,
+                avatar_url: oauthAvatar,
                 updated_at: new Date().toISOString()
               })
               .eq('id', userId);
 
             if (!updateError) {
-              data.avatar_url = user.user_metadata.picture;
+              data.avatar_url = oauthAvatar;
             }
           }
         }
@@ -137,6 +139,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return { error };
   };
 
+  const signInWithGitHub = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `${window.location.origin}`,
+      },
+    });
+    return { error };
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
   };
@@ -166,6 +178,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         signUp,
         signIn,
         signInWithGoogle,
+        signInWithGitHub,
         signOut,
         updateProfile,
       }}

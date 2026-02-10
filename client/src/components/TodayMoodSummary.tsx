@@ -30,7 +30,7 @@ const TodayMoodSummary = ({ entry }: { entry: MoodEntry }) => {
   const quote = getRandomQuoteForMood(moodValue);
 
   return (
-    <div className="today-mood-summary bg-white rounded-2xl border border-mood-blue-100 p-6 gap-6 relative overflow-hidden md:min-h-[340px] z-0">
+    <div className="today-mood-summary bg-white rounded-2xl border border-mood-blue-100 p-6 gap-6 relative overflow-hidden md:min-h-[340px] h-full z-0">
       {/* Left side: text */}
       <div className="text-center md:text-left">
         <p className="text-[32px]/[1.4] font-bold text-mood-neutral-900/[70%]">I’m feeling</p>

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import type { MoodEntry } from "../types";
 import moodIconsColor from "../assets/moodImagesColor";
+import sleepIcons from "../assets/images/icon-sleep.svg";
 
 // Map mood to color for bars
 const moodColors: Record<MoodEntry["mood"], string> = {
@@ -108,7 +109,7 @@ const TrendsChart = ({ entries }: { entries: MoodEntry[] }) => {
         <div className="absolute left-0 top-0 bottom-12 flex flex-col justify-between text-[13px]/[1.4] text-mood-neutral-600 pr-2">
           <div className="flex items-center gap-1">
             <span className="inline-block w-3 h-3">
-              <img src="/src/assets/images/icon-sleep.svg" alt="" className="w-full h-full" />
+              <img src={sleepIcons} alt="" className="w-full h-full" />
             </span>
             <span>9+ hours</span>
           </div>
