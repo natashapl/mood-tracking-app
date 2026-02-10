@@ -34,7 +34,7 @@ const TodaySleepAndReflection = ({ entry }: { entry: MoodEntry }) => {
           <span>Reflection of the day</span>
         </h3>
         <p className="text-[18px]/[1.2] font-medium">{entry.reflection || "No reflection entered."}</p>
-        <ul className="flex flex-wrap gap-3 md:absolute md:bottom-5 md:left-5">
+        <ul className="flex flex-wrap gap-3 md:bottom-5 md:left-5 mt-8">
           {entry.feelings.map((feeling, idx) => (
             <li
               key={idx}

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import CustomCheckbox from "../CustomCheckbox";
+import hintIcon from "../../assets/images/icon-hint.svg"
 
 interface Step2FeelingsProps {
   feelings: string[];
@@ -62,9 +63,9 @@ const Step2_Feelings = ({ feelings, onChange, maxSelections = 3 }: Step2Feelings
       </div>
 
       {tooManySelected && (
-        <div ref={errorRef} className="flex items-start gap-2 text-mood-red-700 text-[15px]/[1.4] mt-2">
+        <div ref={errorRef} className="flex items-start gap-2 text-[15px]/[1.4] mt-2">
           <img
-            src="/src/assets/images/icon-hint.svg"
+            src={hintIcon}
             alt="error"
             className="w-4 h-4 mt-0.5 inline-flex object-contain"
             width="16"
