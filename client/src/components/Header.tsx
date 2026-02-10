@@ -76,7 +76,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
             </button>
             <button
               onClick={handleLogout}
-              className="cursor-pointer w-full text-left px-4 py-2 text-[15px]/[1.4] text-red-600 hover:bg-red-50 transition"
+              className="cursor-pointer w-full text-left px-4 py-2 text-[15px]/[1.4] text-mood-neutral-900 hover:bg-blue-50 transition"
             >
               Logout
             </button>
