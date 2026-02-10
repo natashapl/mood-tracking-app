@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import logo from '../assets/images/logo.svg';
+import avatarPlaceholder from '../assets/images/avatar-placeholder.svg';
 
 type HeaderProps = {
   onOpenSettings?: () => void;
@@ -36,7 +38,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
       <div className="flex items-center gap-2">
         <a href="/">
           <img
-            src="/src/assets/images/logo.svg"
+            src={logo}
             alt="Mood Tracker logo"
             className="w-full h-full object-cover"
             width="178"
@@ -51,7 +53,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
           className="w-10 h-10 rounded-full bg-gray-300 overflow-hidden cursor-pointer hover:ring-2 hover:ring-mood-blue-600 transition"
         >
           <img
-            src={profile?.avatar_url || "/src/assets/images/avatar-placeholder.svg"}
+            src={profile?.avatar_url || avatarPlaceholder}
             alt="User Avatar"
             className="w-full h-full object-cover"
             width="40"
