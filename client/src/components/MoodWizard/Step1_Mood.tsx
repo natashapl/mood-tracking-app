@@ -22,7 +22,7 @@ interface Step1Props {
 const Step1_Mood = ({ mood, onSelect }: Step1Props) => {
   return (
     <div className="step step1 mb-8">
-      <h2 className="font-bold text-[28px]/[1.3] md:text-[32px]/[1.4] mb-6 md:mb-8">How many hours did?</h2>
+      <h2 className="font-bold text-[28px]/[1.3] md:text-[32px]/[1.4] mb-6 md:mb-8">How was your mood today?</h2>
 
       <div className="space-y-3" role="radiogroup" aria-label="Select your mood">
         {moodOptions.map((option) => {
@@ -35,7 +35,7 @@ const Step1_Mood = ({ mood, onSelect }: Step1Props) => {
               key={option.value}
               type="button"
               onClick={() => onSelect(option.value)}
-              className={`flex items-center justify-between w-full p-4 rounded-xl border-2 transition cursor-pointer hover:border-mood-blue-600
+              className={`flex items-center justify-between w-full p-4 rounded-xl border-2 transition cursor-pointer hover:border-mood-blue-600 bg-white
                 ${
                   isSelected
                     ? "border-mood-blue-600"
