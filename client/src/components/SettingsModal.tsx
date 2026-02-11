@@ -81,7 +81,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
   return (
     <div className="flex items-center justify-center fixed w-full top-0 left-0 right-0 z-60">
       <div className="bg-white z-50 rounded-xl shadow-lg w-5/6 max-w-[500px] min-w-[335px] relative top-10">
-        <div className="p-8">
+        <div className="pt-9 pr-8 pl-8 pb-8">
           {/* Close button */}
           <button
             onClick={onClose}
