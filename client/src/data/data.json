@@ -110,37 +110,57 @@
     "-2": [
       "I am allowed to feel what I feel.",
       "This moment will not last forever.",
-      "I am safe in this moment, even as I feel this pain.",
-      "I've survived every difficult day so far.",
-      "I am doing the best I can right now."
+      "I am safe right now.",
+      "I am still here.",
+      "I am doing the best I can.",
+      "It's okay to not be okay.",
+      "I am worthy of care.",
+      "I am not alone in this.",
+      "I've made it through hard days before."
     ],
     "-1": [
       "I am healing at my own pace.",
       "Rest is part of progress.",
-      "I am taking things one moment at a time.",
-      "I choose to be gentle with myself today.",
-      "Small steps still move me forward."
+      "One moment at a time is enough.",
+      "I am gentle with myself.",
+      "Small steps move me forward.",
+      "My effort counts.",
+      "I am moving through this.",
+      "I deserve my own kindness.",
+      "I am resilient."  
     ],
     "0": [
       "I am present in this moment.",
-      "I can create balance today.",
+      "Balance feels possible.",
       "My breath helps me reset.",
       "I am open to what today might bring.",
-      "Calm is available to me."
+      "Calm is available to me.",
+      "I can choose what to focus on.",
+      "I am enough, just as I am.",
+      "Today is what I make of it.",
+      "Simple moments have value."
     ],
     "1": [
-      "I notice what is going well.",
-      "Gratitude helps me stay steady.",
-      "I celebrate my progress, no matter how small.",
-      "My positive energy affects those around me.",
-      "Small wins matter."
+      "I notice what is working.",
+      "Gratitude keeps me steady.",
+      "I appreciate my progress.",
+      "My energy feels good.",
+      "Small wins matter.",
+      "I am proud of myself.",
+      "I am building something good.",
+      "I pause to appreciate this feeling.",
+      "My good mood can lift others."
     ],
     "2": [
-      "I let myself enjoy this feeling.",
-      "Joy is safe for me.",
-      "I fully embrace this moment of joy.",
-      "My happiness can inspire others.",
-      "I trust this moment."
+      "I allow myself to enjoy this.",
+      "Joy feels safe.",
+      "I fully embrace this moment.",
+      "Happiness flows naturally.",
+      "I trust this moment.",
+      "I am grateful for this feeling.",
+      "I let this joy fill me completely.",
+      "I'm creating a moment I'll remember.",
+      "I am worthy of this happiness."
     ]
   }
 }

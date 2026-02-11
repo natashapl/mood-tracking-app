@@ -79,6 +79,7 @@ const TrendsChart = ({ entries }: { entries: MoodEntry[] }) => {
   // Chart container height minus padding and emoji space
   // Container: 280px, pb-3: 12px, emoji + margin: ~40px
   const chartHeightPx = 230; // Available height for bars
+  const isSparse = chartData.length < 6;
 
   const handleBarClick = (index: number, event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -120,27 +121,16 @@ const TrendsChart = ({ entries }: { entries: MoodEntry[] }) => {
         </div>
 
         {/* Chart bars */}
-        <div className="ml-24 md:ml-28 flex items-end justify-between gap-1 sm:gap-2 md:gap-2.5 h-[280px] border-b border-mood-neutral-300 pb-3">
+        <div className={`ml-24 md:ml-28 flex items-end ${isSparse ? 'justify-start gap-2 sm:gap-4 md:gap-6' : 'justify-between gap-1 sm:gap-2 md:gap-2.5'} h-[280px] border-b border-mood-neutral-300 pb-3`}>
           {chartData.map((entry, index) => {
             const sleepValue = sleepToValue(entry.sleepRange);
             const heightPx = Math.max((sleepValue / maxHeight) * chartHeightPx, 20);
             const color = moodColors[entry.mood];
 
-            // Debug logging
-            if (index === 0) {
-              console.log("Chart Debug:", {
-                sleepRange: entry.sleepRange,
-                sleepValue,
-                heightPx,
-                maxHeight,
-                chartHeightPx
-              });
-            }
-
             return (
               <div
                 key={entry.id}
-                className="flex flex-col items-center justify-end cursor-pointer transition-opacity hover:opacity-80 flex-1 min-w-[18px] max-w-[22px] sm:max-w-[26px] md:max-w-[30px] lg:max-w-[38px] xl:max-w-[44px]"
+                className={`flex flex-col items-center justify-end cursor-pointer transition-opacity hover:opacity-80 min-w-[18px] max-w-[22px] sm:max-w-[26px] md:max-w-[30px] lg:max-w-[38px] xl:max-w-[44px] ${isSparse ? 'w-[22px] sm:w-[26px] md:w-[30px] lg:w-[38px] xl:w-[44px]' : 'flex-1'}`}
                 onClick={(e) => handleBarClick(index, e)}
               >
                 {/* Mood emoji on top */}
@@ -166,13 +156,13 @@ const TrendsChart = ({ entries }: { entries: MoodEntry[] }) => {
         </div>
 
         {/* X-axis labels */}
-        <div className="ml-24 md:ml-28 flex justify-between gap-1 sm:gap-2 md:gap-2.5 mt-2">
+        <div className={`ml-24 md:ml-28 flex ${isSparse ? 'justify-start gap-2 sm:gap-4 md:gap-6' : 'justify-between gap-1 sm:gap-2 md:gap-2.5'} mt-2`}>
           {chartData.map((entry) => {
             const { month, day } = formatDate(entry.date);
             return (
               <div
                 key={entry.id}
-                className="text-center text-[10px]/[1.4] sm:text-[11px]/[1.4] md:text-[13px]/[1.4] text-mood-neutral-600 flex-1 min-w-[18px] max-w-[22px] sm:max-w-[26px] md:max-w-[30px] lg:max-w-[38px] xl:max-w-[44px]"
+                className={`text-center text-[10px]/[1.4] sm:text-[11px]/[1.4] md:text-[13px]/[1.4] text-mood-neutral-600 min-w-[18px] max-w-[22px] sm:max-w-[26px] md:max-w-[30px] lg:max-w-[38px] xl:max-w-[44px] ${isSparse ? 'w-[22px] sm:w-[26px] md:w-[30px] lg:w-[38px] xl:w-[44px]' : 'flex-1'}`}
               >
                 <div>{month}</div>
                 <div className="font-semibold">{day}</div>
