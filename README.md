@@ -47,14 +47,14 @@ Users should be able to:
 ### Built with
 
 - **Frontend:**
-  - React 18 with TypeScript
+  - React 19 with TypeScript
   - Vite (for fast development and optimized builds)
   - Tailwind CSS (for utility-first styling)
   - Recharts (for interactive mood and sleep trends visualization)
 
 - **Backend & Services:**
   - Supabase (PostgreSQL database, authentication, and storage)
-  - Google OAuth 2.0 (third-party authentication)
+  - Google OAuth 2.0 & GitHub OAuth (third-party authentication)
   - Supabase Storage (for avatar image hosting)
   - Google Workspace SMTP (custom email branding for auth emails)
 
@@ -69,7 +69,7 @@ Users should be able to:
 
 **Authentication System:**
 - Email/password authentication with email confirmation
-- Google OAuth integration for one-click sign-in
+- Google OAuth and GitHub OAuth integration for one-click sign-in
 - Automatic profile creation with OAuth metadata (name and avatar)
 - Custom email branding using Google Workspace SMTP (welcome@natashasworld.com)
 - Protected routes and session management
@@ -90,7 +90,7 @@ Users should be able to:
 - Settings modal for name and avatar updates
 - Avatar upload with validation (2MB max, image files only)
 - Supabase Storage integration for secure image hosting
-- Automatic avatar sync from Google OAuth on sign-in
+- Automatic avatar sync from OAuth providers on sign-in
 
 **Data Management:**
 - Real-time data sync with Supabase
@@ -103,16 +103,17 @@ Users should be able to:
 This project provided hands-on experience with several advanced full-stack concepts:
 
 **OAuth Integration:**
-Implementing Google OAuth required understanding the complete authentication flow, handling OAuth callbacks, and syncing user metadata (name and avatar) from Google to the application profile. The challenge was managing existing users who later sign in with Google - detecting when to update their profile with Google data without overwriting user customizations.
+Implementing multiple OAuth providers (Google and GitHub) required understanding the complete authentication flow, handling OAuth callbacks, and syncing user metadata (name and avatar) from each provider to the application profile. The challenge was managing existing users who later sign in with a different provider - detecting when to update their profile with OAuth data without overwriting user customizations, and handling Supabase's account linking when multiple providers share the same email.
 
 ```typescript
-// Auto-sync Google avatar for existing profiles
-if (user && user.app_metadata.provider === 'google') {
-  if (!data.avatar_url && user.user_metadata.picture) {
+// Auto-sync OAuth avatar for existing profiles
+if (user && (user.app_metadata.provider === 'google' || user.app_metadata.provider === 'github')) {
+  const oauthAvatar = user.user_metadata.picture || user.user_metadata.avatar_url;
+  if (!data.avatar_url && oauthAvatar) {
     await supabase
       .from('profiles')
       .update({
-        avatar_url: user.user_metadata.picture,
+        avatar_url: oauthAvatar,
         updated_at: new Date().toISOString()
       })
       .eq('id', userId);

@@ -29,7 +29,7 @@ const Step4_Sleep = ({ value, onChange }: Step4SleepProps) => {
               tabIndex={0}
               onClick={() => onChange(option)}
               className={`
-                flex items-center justify-between w-full p-4 rounded-xl border-2 transition cursor-pointer hover:border-mood-blue-600
+                flex items-center justify-between w-full p-4 rounded-xl border-2 transition cursor-pointer hover:border-mood-blue-600 bg-white
                 ${isSelected
                     ? "border-mood-blue-600"
                     : "border-mood-blue-100"

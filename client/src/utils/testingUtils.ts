@@ -5,6 +5,7 @@
  * - addSampleData() - Add 11 days of sample data
  * - addTestEntry(date, mood, feelings, reflection, sleep) - Add entry for specific date
  * - viewAllEntries() - View all entries in console
+ * - clearSampleData() - Clear only sample/test entries
  * - clearAllEntries() - Clear all entries
  */
 
@@ -103,6 +104,52 @@ export async function addSampleData() {
 
   // Reload page to see changes
   window.location.reload();
+}
+
+/**
+ * Clear only sample/test entries (keeps your real entries)
+ * Usage in console: clearSampleData()
+ */
+export async function clearSampleData() {
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    console.error("❌ No user logged in");
+    return;
+  }
+
+  console.log("🔄 Finding sample data entries...");
+
+  const { data: entries, error: fetchError } = await supabase
+    .from('mood_entries')
+    .select('id, reflection')
+    .eq('user_id', user.id)
+    .like('reflection', 'Test reflection for %');
+
+  if (fetchError) {
+    console.error("❌ Failed to fetch entries:", fetchError);
+    return;
+  }
+
+  if (!entries || entries.length === 0) {
+    console.log("✅ No sample data found!");
+    return;
+  }
+
+  console.log(`Found ${entries.length} sample entries to delete`);
+
+  const { error } = await supabase
+    .from('mood_entries')
+    .delete()
+    .eq('user_id', user.id)
+    .like('reflection', 'Test reflection for %');
+
+  if (error) {
+    console.error("❌ Failed to clear sample data:", error);
+  } else {
+    console.log(`✅ Removed ${entries.length} sample entries!`);
+    window.location.reload();
+  }
 }
 
 /**
