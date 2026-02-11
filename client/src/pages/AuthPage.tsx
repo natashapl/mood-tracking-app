@@ -70,7 +70,7 @@ const AuthPage = () => {
             height="40"
           />
           <h1 className="text-[32px]/[1.4] font-bold mb-2">
-            {isLogin ? 'Welcome back!' : 'Create account'}
+            {isLogin ? 'Welcome!' : 'Create account'}
           </h1>
           <p className="text-[15px]/[1.4] text-mood-neutral-600">
             {isLogin
