@@ -168,7 +168,6 @@ const AuthPage = () => {
           </div>
 
           <button
-            type="button"
             onClick={handleGoogleSignIn}
             disabled={loading}
             className="cursor-pointer mt-4 w-full flex items-center justify-center gap-3 bg-white text-mood-neutral-900 text-[16px]/[1.4] px-8 py-3 rounded-lg border border-mood-neutral-300 hover:bg-gray-50 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
@@ -185,7 +184,6 @@ const AuthPage = () => {
           </button>
 
           <button
-            type="button"
             onClick={handleGitHubSignIn}
             disabled={loading}
             className="cursor-pointer mt-3 w-full flex items-center justify-center gap-3 bg-white text-mood-neutral-900 text-[16px]/[1.4] px-8 py-3 rounded-lg border border-mood-neutral-300 hover:bg-gray-50 transition shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
@@ -202,7 +200,6 @@ const AuthPage = () => {
 
         <div className="mt-6 text-center">
           <button
-            type="button"
             onClick={() => {
               setIsLogin(!isLogin);
               setError('');

@@ -126,7 +126,6 @@ const MoodWizard = ({
         <div className="pt-8 px-5 md:pt-12 md:px-10">
           {/* Close button */}
           <button
-            type="button"
             onClick={handleClose}
             className="absolute top-8 right-8 cursor-pointer">
             <img
@@ -251,7 +250,6 @@ const MoodWizard = ({
         <div className="pt-4 pb-8 px-5 md:px-10 ">
           {/* Navigation Button */}
           <button
-            type="button"
             onClick={handleContinue}
             className={`w-full py-4 px-8 rounded-[10px] text-[24px]/[140%] transition ${
               isStepValid()
