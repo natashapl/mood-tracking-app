@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./preview-readme.jpg)
+![](./preview-readme.webp)
 
 ### Links
 
