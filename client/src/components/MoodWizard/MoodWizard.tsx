@@ -120,7 +120,7 @@ const MoodWizard = ({
 
   return (
     <div className="flex items-center justify-center fixed w-full top-0 left-0 right-0 z-60">
-      <div className="bg-gradient-to-b from-[#f5f5ff] from-73% to-[#e0e0ff] z-50 rounded-xl shadow-lg w-5/6 max-w-[600px] min-w-[335px] relative top-10">
+      <div className="bg-gradient-to-b from-[#f5f5ff] from-73% to-[#e0e0ff] z-50 rounded-xl shadow-lg w-5/6 max-w-[600px] min-w-[335px] max-h-[75vh] overflow-auto relative top-10">
 
         
         <div className="pt-8 px-5 md:pt-12 md:px-10">
