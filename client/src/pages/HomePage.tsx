@@ -70,6 +70,7 @@ const HomePage = () => {
         <Greeting />
         <p className="text-center">
           <button
+            type="button"
             className="mt-12 lg:mt-16 bg-mood-blue-600 text-white text-[20px]/[1.4] px-8 pt-3 pb-4 rounded-[10px] hover:bg-mood-blue-700 transition shadow cursor-pointer"
             onClick={() => setShowWizard(true)}
           >
