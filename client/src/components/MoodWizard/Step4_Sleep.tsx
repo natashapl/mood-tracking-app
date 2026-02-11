@@ -14,7 +14,7 @@ const sleepOptions = [
 const Step4_Sleep = ({ value, onChange }: Step4SleepProps) => {
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-6">How many hours did you sleep last night?</h2>
+      <h2 className="font-bold text-[28px]/[1.3] md:text-[32px]/[1.4] mb-6 md:mb-8">How many hours did you sleep last night?</h2>
 
       <div role="radiogroup" aria-label="Sleep range" className="space-y-3 mb-4">
         {sleepOptions.map((option) => {
