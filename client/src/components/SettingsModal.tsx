@@ -84,7 +84,6 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
         <div className="pt-9 pr-8 pl-8 pb-8">
           {/* Close button */}
           <button
-            type="button"
             onClick={onClose}
             className="absolute top-6 right-6 cursor-pointer"
           >
@@ -132,7 +131,6 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
               </div>
               <div>
                 <button
-                  type="button"
                   onClick={handleAvatarClick}
                   disabled={uploading}
                   className="cursor-pointer bg-mood-blue-600 text-white text-[15px]/[1.4] px-4 py-2 rounded-lg hover:bg-mood-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
@@ -162,14 +160,12 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
           {/* Actions */}
           <div className="flex gap-3">
             <button
-              type="button"
               onClick={onClose}
               className="cursor-pointer flex-1 bg-gray-200 text-mood-neutral-900 text-[18px]/[1.4] px-6 py-3 rounded-lg hover:bg-gray-300 transition"
             >
               Cancel
             </button>
             <button
-              type="button"
               onClick={handleSave}
               disabled={saving}
               className="cursor-pointer flex-1 bg-mood-blue-600 text-white text-[18px]/[1.4] px-6 py-3 rounded-lg hover:bg-mood-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
