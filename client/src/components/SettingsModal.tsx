@@ -96,7 +96,23 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             />
           </button>
 
-          <h2 className="text-[32px]/[1.4] font-bold mb-6">Settings</h2>
+          <h2 className="text-[32px]/[1.4] font-bold mb-2">Update your profile</h2>
+          <p className="text-[18px]/[1.4] text-mood-neutral-600 mb-6">Personalize your account with your name and photo.</p>
+
+          {/* Name */}
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-[15px]/[1.4] font-medium mb-2">
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border border-mood-neutral-300 focus:outline-none focus:ring-2 focus:ring-mood-blue-600"
+              placeholder="Enter your name"
+            />
+          </div>
 
           {/* Avatar */}
           <div className="mb-6">
@@ -133,21 +149,6 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
                 className="hidden"
               />
             </div>
-          </div>
-
-          {/* Name */}
-          <div className="mb-6">
-            <label htmlFor="name" className="block text-[15px]/[1.4] font-medium mb-2">
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-mood-neutral-300 focus:outline-none focus:ring-2 focus:ring-mood-blue-600"
-              placeholder="Enter your name"
-            />
           </div>
 
           {error && (
