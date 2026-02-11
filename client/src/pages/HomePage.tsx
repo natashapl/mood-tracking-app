@@ -56,14 +56,14 @@ const HomePage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen min-w-[430px] bg-gradient-to-b from-[#f5f5ff] from-73% to-[#e0e0ff] flex items-center justify-center">
+      <div className="min-h-screen min-w-[400px] bg-gradient-to-b from-[#f5f5ff] from-73% to-[#e0e0ff] flex items-center justify-center">
         <div className="text-[20px]/[1.4] text-mood-neutral-600">Loading your mood data...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen min-w-[430px] bg-gradient-to-b from-[#f5f5ff] from-73% to-[#e0e0ff] relative px-4 pt-8 md:px-8 md:pt-10">
+    <div className="min-h-screen min-w-[400px] bg-gradient-to-b from-[#f5f5ff] from-73% to-[#e0e0ff] relative px-4 pt-8 md:px-8 md:pt-10">
       <Header onOpenSettings={() => setShowSettings(true)} />
 
       <main className="max-w-[1170px] min-w-[335px] mx-auto pb-20">
