@@ -51,6 +51,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
 
       <div className="relative" ref={dropdownRef}>
         <button
+          type="button"
           onClick={() => setShowDropdown(!showDropdown)}
           className="w-10 h-10 rounded-full bg-gray-300 overflow-hidden cursor-pointer hover:ring-2 hover:ring-mood-blue-600 transition"
         >
@@ -74,6 +75,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
               </p>
             </div>
             <button
+              type="button"
               onClick={handleSettings}
               className="flex items-center gap-2 cursor-pointer w-full text-left px-4 py-2 text-[15px]/[1.4] text-mood-neutral-900 hover:bg-blue-50 transition"
             >
@@ -87,6 +89,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
               <span>Settings</span>
             </button>
             <button
+              type="button"
               onClick={handleLogout}
               className="flex items-center gap-2 cursor-pointer w-full text-left px-4 py-2 text-[15px]/[1.4] text-mood-neutral-900 hover:bg-blue-50 transition"
             >
