@@ -154,7 +154,7 @@ const MoodWizard = ({
         </div>
      
         {/* Step Content */}
-        <div ref={contentRef} className="step-container px-5 md:px-10 overflow-y-auto max-h-[65vh]">
+        <div ref={contentRef} className="step-container px-5 md:px-10 md:overflow-y-auto md:max-h-[65vh]">
           {step === 1 && (
             <>
               <Step1_Mood
