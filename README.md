@@ -50,7 +50,7 @@ Users should be able to:
   - React 19 with TypeScript
   - Vite (for fast development and optimized builds)
   - Tailwind CSS (for utility-first styling)
-  - Recharts (for interactive mood and sleep trends visualization)
+  - Custom-built interactive charts (no charting library)
 
 - **Backend & Services:**
   - Supabase (PostgreSQL database, authentication, and storage)
