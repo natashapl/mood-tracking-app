@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles/index.css'
 import App from './App.tsx'
-import { addTestEntry, addSampleData, clearSampleData, clearAllEntries, viewAllEntries, deduplicateEntries } from './utils/testingUtils'
+import { addTestEntry, addSampleData, clearSampleData, clearAllEntries, viewAllEntries, deduplicateEntries, setupDemoProfile } from './utils/testingUtils'
 
 // Expose testing utilities to browser console for development
 if (import.meta.env.DEV) {
@@ -12,6 +12,7 @@ if (import.meta.env.DEV) {
   (window as any).clearAllEntries = clearAllEntries;
   (window as any).viewAllEntries = viewAllEntries;
   (window as any).deduplicateEntries = deduplicateEntries;
+  (window as any).setupDemoProfile = setupDemoProfile;
 }
 
 createRoot(document.getElementById('root')!).render(

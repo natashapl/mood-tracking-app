@@ -7,11 +7,13 @@
  * - viewAllEntries() - View all entries in console
  * - clearSampleData() - Clear only sample/test entries
  * - clearAllEntries() - Clear all entries
+ * - setupDemoProfile() - Set demo account name and avatar
  */
 
 import type { MoodEntry } from "../types";
 import { loadMoodEntriesFromSupabase, saveMoodEntryToSupabase } from "./supabaseStorage";
 import { supabase } from "../lib/supabase";
+import avatarLisa from "../assets/images/avatar-lisa.jpg";
 
 /**
  * Add a mood entry for a specific date (for testing)
@@ -80,14 +82,15 @@ export async function addSampleData() {
       continue;
     }
 
-    const moodIndex = Math.floor(Math.random() * moods.length);
+    // Last entry (today, i === 0) is always Happy
+    const moodIndex = i === 0 ? 1 : Math.floor(Math.random() * moods.length);
     const newEntry: MoodEntry = {
       id: Date.now().toString() + Math.random(),
       date: dateString,
       mood: moods[moodIndex],
       feelings: feelings[moodIndex],
       reflection: `Test reflection for ${dateString}. Feeling ${moods[moodIndex].toLowerCase()} today.`,
-      sleepRange: sleepRanges[Math.floor(Math.random() * sleepRanges.length)],
+      sleepRange: i === 0 ? "7-8 hours" : sleepRanges[Math.floor(Math.random() * sleepRanges.length)],
     };
 
     const { success, error } = await saveMoodEntryToSupabase(newEntry);
@@ -264,4 +267,55 @@ export async function deduplicateEntries() {
 
   // Reload page to see changes
   window.location.reload();
+}
+
+/**
+ * Set up the demo account profile (name and avatar)
+ * Usage in console: setupDemoProfile()
+ */
+export async function setupDemoProfile() {
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    console.error("❌ No user logged in");
+    return;
+  }
+
+  console.log("🔄 Setting up demo profile...");
+
+  // Fetch the bundled avatar image and upload to Supabase Storage
+  const response = await fetch(avatarLisa);
+  const blob = await response.blob();
+  const file = new File([blob], 'avatar-lisa.jpg', { type: 'image/jpeg' });
+
+  const filePath = `${user.id}/avatar.jpg`;
+  const { error: uploadError } = await supabase.storage
+    .from('avatars')
+    .upload(filePath, file, { upsert: true });
+
+  if (uploadError) {
+    console.error("❌ Failed to upload avatar:", uploadError);
+    return;
+  }
+
+  const { data: urlData } = supabase.storage
+    .from('avatars')
+    .getPublicUrl(filePath);
+
+  // Update profile with name and avatar
+  const { error: updateError } = await supabase
+    .from('profiles')
+    .update({
+      name: 'Jane',
+      avatar_url: urlData.publicUrl,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', user.id);
+
+  if (updateError) {
+    console.error("❌ Failed to update profile:", updateError);
+  } else {
+    console.log("✅ Demo profile set up! Name: Jane, Avatar: avatar-lisa.jpg");
+    window.location.reload();
+  }
 }

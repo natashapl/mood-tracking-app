@@ -58,6 +58,10 @@ Users should be able to:
   - Supabase Storage (for avatar image hosting)
   - Google Workspace SMTP (custom email branding for auth emails)
 
+- **Testing:**
+  - Vitest (unit testing framework)
+  - React Testing Library (component testing)
+
 - **Development Practices:**
   - Semantic HTML5 markup with ARIA labels for accessibility
   - Mobile-first responsive design
@@ -70,6 +74,7 @@ Users should be able to:
 **Authentication System:**
 - Email/password authentication with email confirmation
 - Google OAuth and GitHub OAuth integration for one-click sign-in
+- Demo account with pre-filled data for visitors to explore without signing up
 - Automatic profile creation with OAuth metadata (name and avatar)
 - Custom email branding using Google Workspace SMTP (welcome@natashasworld.com)
 - Protected routes and session management

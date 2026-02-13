@@ -11,10 +11,14 @@ import TodayMoodSummary from "../components/TodayMoodSummary";
 import { getLocalDateString } from "../utils/date";
 import TodaySleepAndReflection from "../components/TodaySleepAndReflection";
 import SettingsModal from "../components/SettingsModal";
+import { useAuth } from "../contexts/AuthContext";
+import { isDemoUser } from "../lib/demoAccount";
 
 
 
 const HomePage = () => {
+  const { user } = useAuth();
+  const isDemo = isDemoUser(user?.email);
   const [entries, setEntries] = useState<MoodEntry[]>([]);
   const [showWizard, setShowWizard] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -68,14 +72,16 @@ const HomePage = () => {
 
       <main className="max-w-[1170px] min-w-[335px] mx-auto pb-20">
         <Greeting />
-        <p className="text-center">
-          <button
-            className="mt-12 lg:mt-16 bg-mood-blue-600 text-white text-[20px]/[1.4] px-8 pt-3 pb-4 rounded-[10px] hover:bg-mood-blue-700 transition shadow cursor-pointer"
-            onClick={() => setShowWizard(true)}
-          >
-            {todayEntry ? "Edit today's mood" : "Log today's mood"}
-          </button>
-        </p>
+        {!isDemo && (
+          <p className="text-center">
+            <button
+              className="mt-12 lg:mt-16 bg-mood-blue-600 text-white text-[20px]/[1.4] px-8 pt-3 pb-4 rounded-[10px] hover:bg-mood-blue-700 transition shadow cursor-pointer"
+              onClick={() => setShowWizard(true)}
+            >
+              {todayEntry ? "Edit today's mood" : "Log today's mood"}
+            </button>
+          </p>
+        )}
 
         {showWizard && (
           <MoodWizard
