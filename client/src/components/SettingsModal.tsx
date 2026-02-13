@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { uploadAvatar } from '../utils/supabaseStorage';
+import { isDemoUser } from '../lib/demoAccount';
 import closeIcon from '../assets/images/icon-close.svg';
 import avatarPlaceholder from '../assets/images/avatar-placeholder.svg';
 
@@ -10,6 +11,7 @@ type SettingsModalProps = {
 
 const SettingsModal = ({ onClose }: SettingsModalProps) => {
   const { profile, user, updateProfile } = useAuth();
+  const isDemo = isDemoUser(user?.email);
   const [name, setName] = useState(profile?.name || '');
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -99,6 +101,12 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
           <h2 className="text-[32px]/[1.4] font-bold mb-2">Update your profile</h2>
           <p className="text-[18px]/[1.4] text-mood-neutral-600 mb-6">Personalize your account with your name and photo.</p>
 
+          {isDemo && (
+            <p className="text-red-600 text-[14px]/[1.4] font-medium mb-4">
+              Profile updates are disabled for the demo account.
+            </p>
+          )}
+
           {/* Name */}
           <div className="mb-6">
             <label htmlFor="name" className="block text-[15px]/[1.4] font-medium mb-2">
@@ -109,7 +117,8 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border border-mood-neutral-300 focus:outline-none focus:ring-2 focus:ring-mood-blue-600"
+              disabled={isDemo}
+              className="w-full px-4 py-3 rounded-lg border border-mood-neutral-300 focus:outline-none focus:ring-2 focus:ring-mood-blue-600 disabled:bg-gray-100 disabled:cursor-not-allowed"
               placeholder="Enter your name"
             />
           </div>
@@ -132,7 +141,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
               <div>
                 <button
                   onClick={handleAvatarClick}
-                  disabled={uploading}
+                  disabled={uploading || isDemo}
                   className="cursor-pointer bg-mood-blue-600 text-white text-[15px]/[1.4] px-4 py-2 rounded-lg hover:bg-mood-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {uploading ? 'Uploading...' : 'Change Photo'}
@@ -167,7 +176,7 @@ const SettingsModal = ({ onClose }: SettingsModalProps) => {
             </button>
             <button
               onClick={handleSave}
-              disabled={saving}
+              disabled={saving || isDemo}
               className="cursor-pointer flex-1 bg-mood-blue-600 text-white text-[18px]/[1.4] px-6 py-3 rounded-lg hover:bg-mood-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {saving ? 'Saving...' : 'Save Changes'}

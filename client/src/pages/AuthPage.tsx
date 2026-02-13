@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { DEMO_EMAIL, DEMO_PASSWORD } from '../lib/demoAccount';
 import logo from '../assets/images/logo.svg';
 
 const AuthPage = () => {
@@ -42,6 +43,19 @@ const AuthPage = () => {
     }
   };
 
+  const handleDemoSignIn = async () => {
+    setError('');
+    setLoading(true);
+    try {
+      const { error } = await signIn(DEMO_EMAIL, DEMO_PASSWORD);
+      if (error) throw error;
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in with demo account');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleGoogleSignIn = async () => {
     setError('');
     const { error } = await signInWithGoogle();
@@ -78,6 +92,22 @@ const AuthPage = () => {
               : 'Start your mood tracking journey'}
           </p>
         </div>
+
+        {isLogin && (
+          <div className="bg-mood-blue-50 border border-mood-blue-100 rounded-lg p-4 mb-6">
+            <p className="text-[14px]/[1.5] text-mood-neutral-700 mb-3">
+              Want to explore without signing up? Try the demo account with pre-filled mood data.
+            </p>
+            <button
+              type="button"
+              onClick={handleDemoSignIn}
+              disabled={loading}
+              className="cursor-pointer w-full bg-mood-blue-600 text-white text-[15px]/[1.4] px-6 py-2.5 rounded-lg hover:bg-mood-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Signing in...' : 'Try Demo Account'}
+            </button>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
