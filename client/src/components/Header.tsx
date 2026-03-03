@@ -60,6 +60,7 @@ const Header = ({ onOpenSettings }: HeaderProps) => {
             className="w-full h-full object-cover"
             width="40"
             height="40"
+            onError={(e) => { e.currentTarget.src = avatarPlaceholder; }}
           />
         </button>
 

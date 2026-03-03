@@ -115,6 +115,16 @@ const HomePage = () => {
           </div>
         </div>
       </main>
+
+      <footer className="max-w-[1170px] mx-auto pb-6 text-center text-[13px]/[1.4] text-mood-neutral-500">
+        Having issues?{' '}
+        <a
+          href="mailto:welcome@natashasworld.com"
+          className="text-mood-blue-600 hover:text-mood-blue-700 underline transition"
+        >
+          Contact me
+        </a>
+      </footer>
     </div>
   );
 };
