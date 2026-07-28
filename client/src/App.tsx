@@ -1,6 +1,7 @@
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
+import { Analytics } from "@vercel/analytics/react";
 
 function AppContent() {
   const { user, loading } = useAuth();
@@ -20,6 +21,7 @@ function App() {
   return (
     <AuthProvider>
       <AppContent />
+      <Analytics />
     </AuthProvider>
   );
 }
